@@ -1,0 +1,4 @@
+hard-code some optional defaults in object if the json file isn't found
+look up constructors and overloaded construtors in ruby
+collect interface methods in it's own object, main looks like it's going to get hairy
+suggetionBox needs safe read/write methods and a way of knowing when to call the defaults
