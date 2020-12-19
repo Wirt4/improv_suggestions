@@ -1,36 +1,29 @@
 load 'suggestion_box.rb'
-load 'categories.rb'
+load 'interface.rb'
 box = SuggestionBox. new "my_suggestions"
-#a little test code to make sure everything's dry-firing correctly
+interface = Interface. new  " add suggestion [A]\n pick suggestion [P]\n view categories [V] \n add categories[C]\n Quit [Q]"
+
 box.run_defaults
 flag = true
-output_msg= "add suggestion [A]\n pick suggestion [P]\n view categories [V] \n add categories[C]\n Quit [Q]"
-
-
-def getOption(puts_msg)
-  puts puts_msg
-  raw = gets
-  ch = raw[0]
-  return ch.upcase
-end
-
+#output_msg= "add suggestion [A]\n pick suggestion [P]\n view categories [V] \n add categories[C]\n Quit [Q]"
 
 #main program logic
 while flag
-  option = getOption(output_msg)
+  option = interface.getOption()
   case option
   when 'A'
-    #do stuff
-    puts "you hit A, wow!"
+    category = interface.getCategory()
+    topic = interface.getTopic()
+    box.add_suggestion(category, topic)
   when 'P'
-    #do stuff
-    puts "you entered P"
+    category = interface.getCategory()
+    puts box.get_suggestion(category)
   when 'V'
       #do stuff
-      puts "you entered V"
+      puts box.get_categories
   when 'C'
-    #do stuff
-    puts "you entrd C"
+    category = interface.getCategory()
+    box.add_category(category)
   when 'Q'
     box.save
     puts "bye"
